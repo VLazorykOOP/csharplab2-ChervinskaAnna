@@ -191,9 +191,56 @@ namespace Lab2CSharp
             PrintMulti(myArray);
             AverageMulti(myArray);
         }
+
+        static int[][] InputTask4()
+        {
+            Console.WriteLine("Size of array ");
+            Console.Write("n = ");
+            int n = int.Parse(Console.ReadLine());
+            int[][] a = new int[n][];
+            for (int i = 0; i < n; ++i)
+            {
+                a[i] = new int[n];
+                for (int j = 0; j < n; ++j)
+                {
+                    Console.Write("a[{0},{1}]= ", i, j);
+                    a[i][j] = int.Parse(Console.ReadLine());
+                }
+            }
+            return a;
+        }
+        static void Print1(int[] a)
+        {
+            for (int i = 0; i < a.Length; ++i)
+                Console.Write("{0,5} ", a[i]);
+        }
+        static void Print2(int[][] a)
+        {
+            for (int i = 0; i < a.Length; ++i, Console.WriteLine())
+                for (int j = 0; j < a[i].Length; ++j)
+                    Console.Write("{0,5} ", a[i][j]);
+        }
+   
         static void task4()
         {
             Console.WriteLine("Task 4");
+            int[][] myArray = InputTask4();
+            Console.WriteLine("Array:");
+            Print2(myArray);
+
+            int[] rez = new int[myArray.Length];
+
+            for (int i = 0; i < myArray.Length; ++i)
+                rez[i] = 0;
+
+            for (int i = 0; i < myArray.Length; ++i)
+                for (int j = 0; j < myArray[i].Length; ++j)
+                    if (myArray[i][j] < 0)
+                    {
+                        rez[j] += myArray[i][j];
+                    }
+            Console.WriteLine("New Array:");
+            Print1(rez);
         }
     }
 
