@@ -49,7 +49,7 @@ namespace Lab2CSharp
             }
         }
 
-        static int[] Input()
+        static int[] InputSingle()
         {
             Console.WriteLine("Size of array: ");
             int n = int.Parse(Console.ReadLine());
@@ -61,10 +61,66 @@ namespace Lab2CSharp
             }
             return a;
         }
-        static void Print(int[] a)
+        static void PrintSingle(int[] a)
         {
             for (int i = 0; i < a.Length; ++i) Console.Write("{0} ", a[i]);
             Console.WriteLine();
+        }
+        static void AdditionSingle(int[] a)
+        {  float b = 0;
+            for (int i = 0; i < a.Length; ++i)
+            {
+                b += a[i];
+            }
+            Console.WriteLine("Addition Single array: {0}", b);
+            if (b >= 10 && b <= 99)
+            {
+                Console.WriteLine("It is double digit number");
+            }
+            else
+            {
+                Console.WriteLine("It isn't double digit number");
+            }
+        }
+        static int[,] InputMulti(out int n, out int m)
+        {
+            Console.WriteLine("Size of array: ");
+            Console.Write("n = ");
+            n = int.Parse(Console.ReadLine());
+            Console.Write("m = ");
+            m = int.Parse(Console.ReadLine());
+            int[,] a = new int[n, m];
+            for (int i = 0; i < n; ++i)
+                for (int j = 0; j < m; ++j)
+                {
+                    Console.Write("a[{0},{1}]= ", i, j);
+                    a[i, j] = int.Parse(Console.ReadLine());
+                }
+            return a;
+        }
+        static void PrintMulti(int[,] a)
+        {
+            for (int i = 0; i < a.GetLength(0); ++i, Console.WriteLine())
+                for (int j = 0; j < a.GetLength(1); ++j)
+                    Console.Write("{0,5} ", a[i, j]);
+        }
+        static void AdditionMulti(int[,] a)
+        {
+            float b = 0;
+            for (int i = 0; i < a.GetLength(0); ++i)
+                for (int j = 0; j < a.GetLength(1);  ++j)
+                {
+                   b+= a[i, j];
+                }
+            Console.WriteLine("Addition Single array: {0}", b);
+            if (b >= 10 && b <= 99)
+            {
+                Console.WriteLine("It is double digit number");
+            }
+            else
+            {
+                Console.WriteLine("It isn't double digit number");
+            }
         }
         static void task1()
         {
@@ -73,26 +129,70 @@ namespace Lab2CSharp
             int choice = int.Parse(Console.ReadLine());
             if (choice == 1)
             {
-                int[] myArray = Input();
-                Console.WriteLine("My array:");
-                Print(myArray);
+                int[] myArray = InputSingle();
+                Console.WriteLine("Array:");
+                PrintSingle(myArray);
+                AdditionSingle(myArray);
+
             }
             else if (choice == 2)
             {
+                int n, m;
+                int[,] myArray = InputMulti(out n, out m);
+                Console.WriteLine("Array:");
+                PrintMulti(myArray);
+                AdditionMulti(myArray);
 
             }
             else { Console.WriteLine("It doesn't exists:"); }
         }
-
-
-            static void task2()
+        //static int[] InputSingle()
+        //{
+        //    Console.WriteLine("Size of array: ");
+        //    int n = int.Parse(Console.ReadLine());
+        //    int[] a = new int[n];
+        //    for (int i = 0; i < n; ++i)
+        //    {
+        //        Console.Write("a[{0}]= ", i);
+        //        a[i] = int.Parse(Console.ReadLine());
+        //    }
+        //    return a;
+        //}
+        //static void PrintSingle(int[] a)
+        //{
+        //    for (int i = 0; i < a.Length; ++i) Console.Write("{0} ", a[i]);
+        //    Console.WriteLine();
+        //}
+        static void CountSingle(int[] a)
         {
+            int count = 0;
+            float prewA = 0;
+            for (int i = 0; i < a.Length; ++i)
+            {
+                if (prewA > a[i]) {
+                    count++;
+                }
+                prewA= a[i];
+            }
+            Console.WriteLine("Number whose > than next element: {0}", count);
+          
+        }
+
+        static void task2(){
             Console.WriteLine("Task 2");
+            int[] myArray = InputSingle();
+            Console.WriteLine("Array:");
+            PrintSingle(myArray);
+            CountSingle(myArray);
         }
 
         static void task3()
         {
             Console.WriteLine("Task 3");
+            int n, m;
+            int[,] myArray = InputMulti(out n, out m);
+            Console.WriteLine("Array:");
+            PrintMulti(myArray);
         }
         static void task4()
         {
